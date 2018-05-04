@@ -70,7 +70,7 @@ Zmotor3::Zmotor3() : PinExtender(),  io(),  pwm()
 
   void Zmotor3::begin(void)
   {
-	  begin(&Wire, 0x00);
+	  begin( 0x00);
   }
   
 
