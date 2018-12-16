@@ -1,25 +1,20 @@
-/*************************************************** 
-  This is a library for our Adafruit 16-channel PWM & Servo driver
+/** @file Zmotor3.cpp
 
-  Pick one up today in the adafruit shop!
-  -----. http://www.adafruit.com/products/815
+Inspired from Adafruit 16-channel PWM & Servo driver library
 
-  These displays use I2C to communicate, 2 pins are required to  
-  interface.
 
-  Adafruit invests time and resources providing this open source code, 
-  please support Adafruit and open-source hardware by purchasing 
-  products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruit Industries.  
-  BSD license, all text above must be included in any redistribution
- ****************************************************/
-
+*/
 #include "zmotor3.h"
 
 #include <Wire.h>
 
 #include "PinExtender.h"
+
+
+uint32_t MOTOR3_PWM[]={PIN_MOTOR3_PWM_0,PIN_MOTOR3_PWM_1,PIN_MOTOR3_PWM_2,PIN_MOTOR3_PWM_3,PIN_MOTOR3_PWM_4,PIN_MOTOR3_PWM_5,PIN_MOTOR3_PWM_6,PIN_MOTOR3_PWM_7,PIN_MOTOR3_PWM_8,PIN_MOTOR3_PWM_9,PIN_MOTOR3_PWM_10,PIN_MOTOR3_PWM_11,PIN_MOTOR3_PWM_12,PIN_MOTOR3_PWM_13,PIN_MOTOR3_PWM_14,PIN_MOTOR3_PWM_15};
+uint32_t MOTOR3_IO[]={PIN_MOTOR3_IO_0,PIN_MOTOR3_IO_1,PIN_MOTOR3_IO_2,PIN_MOTOR3_IO_3,PIN_MOTOR3_IO_4,PIN_MOTOR3_IO_5,PIN_MOTOR3_IO_6,PIN_MOTOR3_IO_7,PIN_MOTOR3_IO_8,PIN_MOTOR3_IO_9,PIN_MOTOR3_IO_10,PIN_MOTOR3_IO_11,PIN_MOTOR3_IO_12,PIN_MOTOR3_IO_13,PIN_MOTOR3_IO_14,PIN_MOTOR3_IO_15};
+
 
 /**************************************************************************/
 /*! 
@@ -49,7 +44,6 @@ Zmotor3::Zmotor3() : PinExtender(),  io(),  pwm()
      io.pinMode(io.getPin(i), OUTPUT);
     for (int i=0;i<16;i++)
      io.digitalWrite(io.getPin(i), LOW);
-
       
 }
 /**************************************************************************/
@@ -154,7 +148,12 @@ else
 		 _next->analogWrite( ulPin,ulValue);		
 	
  }
-
+ bool Zmotor3::test()
+  {
+    bool b=pwm.test();
+    b&=io.test();
+  return b;
+  }
 
  uint32_t Zmotor3::getPin(uint32_t ulPin)
  {
