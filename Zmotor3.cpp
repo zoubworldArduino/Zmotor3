@@ -5,7 +5,7 @@ Inspired from Adafruit 16-channel PWM & Servo driver library
 
 
 */
-#include "zmotor3.h"
+#include "Zmotor3.h"
 
 #include <Wire.h>
 
